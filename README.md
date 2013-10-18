@@ -1,7 +1,7 @@
 nimrust
 ============
 
-nimrod and rust perf tests
+nimrod and rust benchmark
 
 Build requirements:
 - gcc
@@ -19,7 +19,7 @@ To compile, exec:
 
 Compile opts:
 - -O2
-- --opt-level=2
+- --opt-level=2 (rust)
 
 My environment:
 - Intel i7-3630QM laptop (4cores, HT) with 16g ram
@@ -28,3 +28,21 @@ My environment:
 - tup 0.7-11
 - nimrod 0.9.3
 - rust 0.8
+
+##FFI-EXPORT-RESULTS
+```
+The results are elapsed time in milliseconds
+============================================
+c:
+4767
+4753
+
+nimrod:
+4761
+4761
+
+rust:
+5959
+5950
+```
+
