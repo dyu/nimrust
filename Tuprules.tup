@@ -1,0 +1,33 @@
+PROJECT_DIR = $(TUP_CWD)
+
+CFLAGS += -Wall
+CFLAGS += -O2
+CFLAGS += -fPIC
+
+NIMFLAGS += -f
+NIMFLAGS += --parallelBuild:1
+NIMFLAGS += --gc:none
+NIMFLAGS += -d:release
+NIMFLAGS += -d:useMalloc
+NIMFLAGS += -d:noSignalHandler
+
+RSFLAGS += --opt-level=2
+
+NAME = %d
+
+# =====================================
+
+!cc = |> gcc $(CFLAGS) -c %f -o %o |> %B.o
+
+!ar = |> ar crs %o %f |> lib$(NAME).a
+
+!exe = |> gcc %f -o %o |> $(NAME)
+
+!shared = |> gcc -shared -o %o -Wl,--whole-archive %f -Wl,--no-whole-archive |> lib$(NAME).so
+
+!nimshared = |> nimrod c $(NIMFLAGS) --app:lib --out:%o %f |>
+
+!nimc = |> nimrod c $(NIMFLAGS) --out:%o %f |>
+
+!rustc = |> rustc -o %o $(RSFLAGS) %f |>
+

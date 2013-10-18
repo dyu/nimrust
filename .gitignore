@@ -1,0 +1,7 @@
+.tup/
+
+call_nimplus
+call_rustplus
+
+*.o
+*.so
