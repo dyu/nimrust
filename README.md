@@ -55,11 +55,11 @@ rust:
 The results are elapsed time in milliseconds
 ============================================
 nimrod:
-9533
-9515
+9572
+9551
 
 rust:
-13707
-13672
+13729
+13720
 ```
 

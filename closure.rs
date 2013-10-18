@@ -17,7 +17,7 @@ fn run(gs: &GetSet, loops: c_int)
 {
     while (gs.get)() < loops
     {
-        let x = (gs.get)() + 1;
+        let x:c_int = (gs.get)() + 1;
         (gs.set)(x);
     }
 }

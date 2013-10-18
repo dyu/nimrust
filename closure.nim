@@ -8,7 +8,7 @@ type
 
 proc run(gs: GetSet, loops: int64) = 
   while gs.get() < loops: 
-    let x = gs.get() + 1
+    let x:int32 = gs.get() + 1
     gs.set(x)
 
 proc newGetSet(): GetSet {.inline.} =
