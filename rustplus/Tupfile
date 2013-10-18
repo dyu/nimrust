@@ -1,0 +1,4 @@
+include_rules
+# =====================================
+
+: plus.rs |> rustc $(RSFLAGS) -o $(NAME) %f && mv lib$(NAME)-* %o |> lib$(NAME).so

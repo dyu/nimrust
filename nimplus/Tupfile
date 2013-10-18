@@ -1,0 +1,10 @@
+include_rules
+# =====================================
+
+NAME = nimplus
+
+NIMFLAGS += --nimcache:.nimcache
+
+# =====================================
+
+: plus.nim |> !nimshared && rm -rf .nimcache |> lib$(NAME).so
