@@ -7,13 +7,19 @@ DIR1 = $(PROJECT_DIR)/$(N1)
 N2 = rustplus
 DIR2 = $(PROJECT_DIR)/$(N2)
 
+N3 = cplus
+DIR3 = $(PROJECT_DIR)/$(N3)
+
 : call_$(N1).c |> !cc |>
 : call_$(N2).c |> !cc |>
+: call_$(N3).c |> !cc |>
 
 # ===================================== exe linked to shared lib
 
 : call_$(N1).o | $(DIR1)/lib$(N1).so |> gcc -Wl,-rpath,'$ORIGIN/$(DIR1)' -L$(DIR1) %f -o %o -l$(N1) |> call_$(N1)
 
 : call_$(N2).o | $(DIR2)/lib$(N2).so |> gcc -Wl,-rpath,'$ORIGIN/$(DIR2)' -L$(DIR2) %f -o %o -l$(N2) |> call_$(N2)
+
+: call_$(N3).o | $(DIR3)/lib$(N3).so |> gcc -Wl,-rpath,'$ORIGIN/$(DIR3)' -L$(DIR3) %f -o %o -l$(N3) |> call_$(N3)
 
 

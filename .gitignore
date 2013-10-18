@@ -2,6 +2,8 @@
 
 call_nimplus
 call_rustplus
+call_cplus
 
 *.o
 *.so
+*.a
