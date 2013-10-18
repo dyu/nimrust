@@ -10,11 +10,13 @@ DIR2 = $(PROJECT_DIR)/$(N2)
 N3 = cplus
 DIR3 = $(PROJECT_DIR)/$(N3)
 
+# ===================================== ffi export
+
 : call_$(N1).c |> !cc |>
 : call_$(N2).c |> !cc |>
 : call_$(N3).c |> !cc |>
 
-# ===================================== exe linked to shared lib
+# exe linked to shared lib
 
 : call_$(N1).o | $(DIR1)/lib$(N1).so |> gcc -Wl,-rpath,'$ORIGIN/$(DIR1)' -L$(DIR1) %f -o %o -l$(N1) |> call_$(N1)
 
@@ -22,4 +24,12 @@ DIR3 = $(PROJECT_DIR)/$(N3)
 
 : call_$(N3).o | $(DIR3)/lib$(N3).so |> gcc -Wl,-rpath,'$ORIGIN/$(DIR3)' -L$(DIR3) %f -o %o -l$(N3) |> call_$(N3)
 
+# ===================================== closure
 
+# Depends on the c function "current_timestamp" from libnewplus.so (github.com/dyu/ffi-overhead)
+# Copy libnewplus.so (located in the "newplus" dir) to /usr/lib if you haven't done so
+# Once it is copied, you can uncomment below
+
+#NIMFLAGS += --nimcache:.nimcache
+#: closure.nim |> !nimc && rm -rf .nimcache |> %B_nim
+#: closure.rs |> !rustc |> %B_rust
