@@ -1,7 +1,10 @@
 .tup/
 
-call_*
-closure_*
+call_cplus
+call_nimplus
+call_rustplus
+closure_nim
+closure_rust
 
 *.o
 *.so
